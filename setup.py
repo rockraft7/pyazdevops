@@ -9,5 +9,14 @@ setuptools.setup(
   license = 'MIT',
   packages = ['azdvop'],
   zip_safe = False,
-  install_requires = ['requests']
+  install_requires = ['requests'],
+  url = 'https://github.com/rockraft7/pyazdevops',
+  keywords = ['Azure', 'DevOps', 'Python', 'API'],
+  classifiers = [
+    'Development Status :: Early access', 
+    'Intended Audience :: Developers', 
+    'Topic :: Software Development :: SDK',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 2.7'
+  ]
 )
