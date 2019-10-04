@@ -119,6 +119,22 @@ class AzDevOps:
     r = self.get('https://vsaex.dev.azure.com/{organization}/_apis/UserEntitlementSummary?select=accesslevels%2Clicenses'.format(organization=organization))
     return json.loads(r.text)['licenses']
   
+  def get_projects(self, organization_name):
+    r = self.get('https://dev.azure.com/{organization}/_apis/projects?api-version=6.0-preview.4'.format(organization=organization_name))
+    return json.loads(r.text)['value']
+  
+  def get_project_teams(self, organization_name, project_id):
+    r = self.get('https://dev.azure.com/{organization}/_apis/projects/{project_id}/teams?api-version=6.0-preview.3'.format(organization = organization_name, project_id = project_id))
+    return json.loads(r.text)['value']
+
+  def get_project_team(self, organization_name, project_id, team_id):
+    r = self.get('https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams/{teamId}?api-version=6.0-preview.3'.format(organization = organization_name, projectId = project_id, teamId = team_id))
+    team = json.loads(r.text)
+
+    r = self.get('https://dev.azure.com/{organization}/{project_id}/_api/_identity/ReadGroupMembers?__v=5&scope={team_id}&readMembers=true&scopedMembershipQuery=1'.format(organization = organization_name, project_id = project_id, team_id = team_id))
+    team['members'] = json.loads(r.text)['identities']
+    return team
+
   def get_memberships(self, organization):
     r = self.get('https://vsaex.dev.azure.com/{organization}/_apis/userentitlements?api-version=5.1-preview.2&top=1000&skip=0'.format(organization=organization))
     return json.loads(r.text)['members']

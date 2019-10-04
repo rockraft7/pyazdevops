@@ -1,1 +1,5 @@
 *.pyc
+pyazdvops.egg-info*
+dist*
+test.py
+.vscode
