@@ -2,14 +2,14 @@ import setuptools
 
 setuptools.setup(
   name = 'pyazdvops',
-  version = '1.0.2',
+  version = '1.0.3',
   description = 'Library for Azure DevOps API for Python',
   author = 'Faizal Sidek',
   author_email = 'faizal.sidek@gmail.com',
   license = 'Free for non-commercial use',
   packages = ['azdvop'],
   zip_safe = False,
-  install_requires = ['requests'],
+  install_requires = ['requests','redis'],
   url = 'https://github.com/rockraft7/pyazdevops',
   keywords = ['Azure', 'DevOps', 'Python', 'API'],
   classifiers = [
